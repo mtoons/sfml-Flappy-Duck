@@ -1,0 +1,6 @@
+{
+    ["C:\\Users\\Angel\\OneDrive\\Bureau\\programmes\\c++\\gui\\sfml\\sfmlVulkanExample"] = "231016",
+    ["C:\\Users\\Angel\\AppData\\Local\\Temp\\.xmake\\231006\\xrepo\\working"] = "231006",
+    ["C:\\Users\\Angel\\OneDrive\\Bureau\\programmes\\c++\\gui\\sfml\\sfmlHelloWorld"] = "231016",
+    ["C:\\Users\\Angel\\OneDrive\\Bureau\\programmes\\c++\\gui\\sfml\\sfmlFlappyBird"] = "231122"
+}
