@@ -6,7 +6,7 @@
       "name": "zig",
       "displayName": "Zig",
       "generator": "Ninja",
-      "binaryDir": "build/${presetName}",
+      "binaryDir": "build",
       "cacheVariables": {
           "CMAKE_C_COMPILER": "zig",
           "CMAKE_CXX_COMPILER": "zig"
@@ -16,7 +16,7 @@
       "name": "gcc",
       "displayName": "GCC",
       "generator": "Ninja",
-      "binaryDir": "build/${presetName}",
+      "binaryDir": "build",
       "cacheVariables": {
           "CMAKE_C_COMPILER": "gcc",
           "CMAKE_CXX_COMPILER": "g++"
@@ -26,7 +26,7 @@
       "name": "clang",
       "displayName": "Clang",
       "generator": "Ninja",
-      "binaryDir": "build/${presetName}",
+      "binaryDir": "build",
       "cacheVariables": {
           "CMAKE_C_COMPILER": "clang",
           "CMAKE_CXX_COMPILER": "clang++"
