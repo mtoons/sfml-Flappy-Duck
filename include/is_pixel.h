@@ -1,1 +1,1 @@
-#define IS_PIXEL false
+#define IS_PIXEL true
