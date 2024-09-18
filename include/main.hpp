@@ -9,4 +9,5 @@
 #include <pipe.hpp>
 #include <player.hpp>
 #include <layer.hpp>
+#include <is_pixel.h>
 #include <vector>

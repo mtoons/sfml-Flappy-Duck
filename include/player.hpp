@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <is_pixel.h>
 
 class Player {
   public:

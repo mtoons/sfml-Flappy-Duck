@@ -2,6 +2,7 @@
 #include "SFML/Graphics/RenderWindow.hpp"
 #include "SFML/Graphics/Sprite.hpp"
 #include "SFML/Graphics/Texture.hpp"
+#include <is_pixel.h>
 
 class Pipe {
   sf::Sprite *pipeDown;

@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System/Vector2.hpp>
+#include <is_pixel.h>
 class Layer {
 public:
     Layer(sf::Texture &texture);

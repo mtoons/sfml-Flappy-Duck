@@ -8,9 +8,15 @@ void Layer::move(const float speed, const float window_width) {
     float width = window_width;
     x += speed/10;
     float alternate_x = x - window_width;
+if(IS_PIXEL) {
     const int rounded_x = x/10;
     const int rounded_alternate_x = alternate_x/10;
     sprite.setPosition(sf::Vector2<float>(-(rounded_x*10), 0));
     alternate.setPosition(sf::Vector2<float>(-(rounded_alternate_x*10), 0));
+} else {
+
+    sprite.setPosition(sf::Vector2<float>(-(x), 0));
+    alternate.setPosition(sf::Vector2<float>(-(alternate_x), 0));
+}
     if (x > width) { x = 0; }
 }
