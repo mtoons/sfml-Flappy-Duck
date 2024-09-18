@@ -16,7 +16,7 @@ class Pipe {
   sf::Sprite *getSpriteUp();
   sf::Sprite *getSpriteDown();
   void move(float x);
-  bool colision(float x, float y);
+  bool colision(sf::Sprite const *sprite);
   void draw(sf::RenderWindow &window);
   float getX();
   ~Pipe();

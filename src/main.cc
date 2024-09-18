@@ -108,8 +108,7 @@ int main() {
       pipeSpeed += 0.5 * dt;
       for (Pipe *&pipe : pipes) {
         pipe->move(-pipeSpeed * dt);
-        if (pipe->colision(player_instance.sprite.getPosition().x,
-                              player_instance.sprite.getPosition().y)) {
+        if (pipe->colision(&player_instance.sprite)) {
           gameOver = true;
         }
         if ((!pipe->passed) && (pipe->getX() <= player_instance.x)) {
@@ -129,7 +128,7 @@ int main() {
             new Pipe(rounded_x*10, rounded_y*10,
                      rounded_dist*10, pipeUpTexture, pipeDownTexture));
       }
-      if (pipes[0]->getSpriteUp()->getPosition().x <= -200) {
+      if (pipes[0]->getX() <= -200) {
         delete pipes[0];
         pipes.erase(pipes.begin());
       }

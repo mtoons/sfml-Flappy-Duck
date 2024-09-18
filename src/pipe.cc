@@ -30,15 +30,19 @@ void Pipe::move(float x) {
   pipeDown->setPosition(sf::Vector2<float>(rounded_x*10, pipeDown->getPosition().y));
   pipeUp->setPosition(sf::Vector2<float>(rounded_x*10, pipeUp->getPosition().y));
 }
-bool Pipe::colision(float x, float y) {
-  bool infX = x >= posX - 75;
-  bool supX = x <= posX + 90;
-  bool infY = y <= pipeDown->getPosition().y + 1000 - 20;
-  bool supY = y >= pipeUp->getPosition().y - 80;
-  bool inX = infX && supX;
-  bool inY = infY || supY;
-  // std::cout << inX << inY << "  y:" << y << '\n';
-  return inY && inX;
+bool Pipe::colision(sf::Sprite const *object) {
+  sf::FloatRect downBoundingBox = pipeDown->getGlobalBounds();
+  sf::FloatRect upBoundingBox = pipeUp->getGlobalBounds();
+  sf::FloatRect objectBoundingBox = object->getGlobalBounds();
+  downBoundingBox.size.x -= 20;
+  downBoundingBox.position.x += 10;
+  upBoundingBox.size.x -= 20;
+  upBoundingBox.position.x += 10;
+  objectBoundingBox.size.y -= 20;
+  objectBoundingBox.position.y += 10;
+  objectBoundingBox.size.x -= 20;
+  objectBoundingBox.position.x += 20;
+  return downBoundingBox.findIntersection(objectBoundingBox ) || upBoundingBox.findIntersection(objectBoundingBox );
 }
 
 void Pipe::draw(sf::RenderWindow &window) {
