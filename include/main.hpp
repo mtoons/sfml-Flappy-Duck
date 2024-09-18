@@ -8,4 +8,5 @@
 #include <array>
 #include <pipe.hpp>
 #include <player.hpp>
+#include <layer.hpp>
 #include <vector>
