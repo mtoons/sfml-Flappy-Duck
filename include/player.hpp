@@ -1,10 +1,12 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
-namespace player {
-struct Player {
+class Player {
+  public:
+  float x, y;
   float velocity;
   sf::Sprite sprite;
+
+  Player(sf::Sprite sprite);
+  void update();
 };
-[[nodiscard]] float playerUpdate(sf::Sprite &player, float velocity);
-} // namespace player

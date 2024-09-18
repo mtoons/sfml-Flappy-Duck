@@ -7,8 +7,9 @@ class Pipe {
   sf::Sprite *pipeDown;
   sf::Sprite *pipeUp;
   float posX;
+  float posY;
 
-public:
+ public:
   bool passed;
   Pipe(float x, float y, float distance, const sf::Texture *textureUp,
        const sf::Texture *textureDown);

@@ -1,4 +1,3 @@
-#include <iostream>
 #include <pipe.hpp>
 
 extern double dt;
@@ -6,22 +5,30 @@ Pipe::Pipe(float x, float y, float distance, const sf::Texture *textureUp,
            const sf::Texture *textureDown) {
   passed = false;
   posX = x;
-  pipeDown = new sf::Sprite;
-  pipeDown->setTexture(*textureDown);
-  pipeDown->scale(10, 10);
-  pipeDown->setPosition(posX, y - distance / 2 - 600);
+  posY = y;
+  pipeDown = new sf::Sprite(*textureDown);
+  pipeDown->scale(sf::Vector2<float>(10., 10.));
+  int rounded_x = x/10;
+  int rounded_y = y/10;
+  int rounded_distance = distance/10;
+  pipeDown->setPosition(sf::Vector2<float>(rounded_x*10, (rounded_y*10) - (rounded_distance/2)*10 - 600));
 
-  pipeUp = new sf::Sprite;
-  pipeUp->setTexture(*textureUp);
-  pipeUp->scale(10, 10);
-  pipeUp->setPosition(posX, y + distance / 2);
+  pipeUp = new sf::Sprite(*textureUp);
+  pipeUp->scale(sf::Vector2<float>(10., 10.));
+  rounded_x = x/10;
+  rounded_y = y/10;
+  rounded_distance = distance/10;
+  pipeUp->setPosition(sf::Vector2<float>(rounded_x*10, (rounded_y*10) + (rounded_distance / 2)*10));
 }
+
 sf::Sprite *Pipe::getSpriteUp() { return pipeDown; }
 sf::Sprite *Pipe::getSpriteDown() { return pipeUp; }
+
 void Pipe::move(float x) {
   posX += x;
-  pipeDown->move(x, 0);
-  pipeUp->move(x, 0);
+  const int rounded_x = posX / 10;
+  pipeDown->setPosition(sf::Vector2<float>(rounded_x*10, pipeDown->getPosition().y));
+  pipeUp->setPosition(sf::Vector2<float>(rounded_x*10, pipeUp->getPosition().y));
 }
 bool Pipe::colision(float x, float y) {
   bool infX = x >= posX - 75;

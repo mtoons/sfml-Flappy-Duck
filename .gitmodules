@@ -1,3 +1,0 @@
-[submodule "lib/sfmlsrc"]
-	path = lib/sfmlsrc
-	url = https://github.com/mtoons/SFML
