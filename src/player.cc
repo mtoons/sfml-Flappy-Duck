@@ -6,9 +6,9 @@ void Player::update() {
   y -= velocity;
   velocity -= 0.5;  // gravity
   if (IS_PIXEL) {
-      const int rounded_x = x / 10;
-      const int rounded_y = y / 10;
-      sprite.setPosition(sf::Vector2<float>(rounded_x*10, rounded_y*10));
+      const int rounded_x = x / PIXEL_MULTIPLIER;
+      const int rounded_y = y / PIXEL_MULTIPLIER;
+      sprite.setPosition(sf::Vector2<float>(rounded_x*PIXEL_MULTIPLIER, rounded_y*PIXEL_MULTIPLIER));
   } else {
       sprite.setPosition(sf::Vector2<float>(x, y));
   }

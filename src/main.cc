@@ -17,28 +17,24 @@ int main() {
   float windowHeight(window.getSize().y);
 
   sf::Texture layer0_texture;
-  static_cast<void>(
-      layer0_texture.loadFromFile("ressources/layer0.png"));
+  static_cast<void>(layer0_texture.loadFromFile("ressources/layer0.png"));
   sf::Sprite layer0(layer0_texture);
-  layer0.setScale(sf::Vector2<float>(10, 10));
+  layer0.setScale(sf::Vector2<float>(PIXEL_MULTIPLIER, PIXEL_MULTIPLIER));
 
   sf::Texture layer1_texture;
   static_cast<void>(layer1_texture.loadFromFile("ressources/layer1.png"));
   Layer layer1(layer1_texture);
 
   sf::Texture layer2_texture;
-  static_cast<void>(
-      layer2_texture.loadFromFile("ressources/layer2.png"));
+  static_cast<void>(layer2_texture.loadFromFile("ressources/layer2.png"));
   Layer layer2(layer2_texture);
 
   sf::Texture layer3_texture;
-  static_cast<void>(
-      layer3_texture.loadFromFile("ressources/layer3.png"));
+  static_cast<void>(layer3_texture.loadFromFile("ressources/layer3.png"));
   Layer layer3(layer3_texture);
 
   sf::Texture layer4_texture;
-  static_cast<void>(
-      layer4_texture.loadFromFile("ressources/layer4.png"));
+  static_cast<void>(layer4_texture.loadFromFile("ressources/layer4.png"));
   Layer layer4(layer4_texture);
 
   // load the font
@@ -69,7 +65,8 @@ int main() {
   static_cast<void>(duckTexture.loadFromFile("ressources/duck.png"));
   Player player_instance((sf::Sprite(duckTexture)));
   // player.sprite.setTexture(duckTexture);
-  player_instance.sprite.setScale(sf::Vector2<float>(10, 10));
+  player_instance.sprite.setScale(
+      sf::Vector2<float>(PIXEL_MULTIPLIER, PIXEL_MULTIPLIER));
   player_instance.sprite.setPosition(
       sf::Vector2<float>(windowWidth / 4., windowHeight / 2.));
   player_instance.x = windowWidth / 4.;
@@ -105,44 +102,47 @@ int main() {
     window.draw(layer4.sprite);
     window.draw(layer4.alternate);
 
-    {  // take events
+    { // take events
       space = false;
       while (const std::optional event = window.pollEvent()) {
         if (event->is<sf::Event::Closed>()) {
           window.close();
-        } 
-        else if (event->is<sf::Event::KeyPressed>()) {
+        } else if (event->is<sf::Event::KeyPressed>()) {
           switch (event->getIf<sf::Event::KeyPressed>()->code) {
-            case sf::Keyboard::Key::Escape:
-              window.close();
-              break;
+          case sf::Keyboard::Key::Escape:
+            window.close();
+            break;
 
-            case sf::Keyboard::Key::Space:
-              space = true;
-              break;
+          case sf::Keyboard::Key::Space:
+            space = true;
+            break;
 
-            default:
-              break;
+          default:
+            break;
           }
         }
       }
     }
 
     if (!gameOver) {
-      if (space) {player_instance.velocity = 10;}
+      if (space) {
+        player_instance.velocity = 10;
+      }
       // player_instance.velocity = space ? 10 : player_instance.velocity;
       // ((10 * space) + (player_instance.velocity * !space));
 
       player_instance.update();
-      layer1.move(speed/300, windowWidth);
-      layer2.move(speed/200, windowWidth);
-      layer3.move(speed/100, windowWidth);
-      layer4.move(speed/50, windowWidth);
+      layer1.move(speed / 300, windowWidth);
+      layer2.move(speed / 200, windowWidth);
+      layer3.move(speed / 100, windowWidth);
+      layer4.move(speed / 50, windowWidth);
 
       speed += 0.5 * dt;
       for (Pipe *&pipe : pipes) {
         pipe->move(-speed * dt);
-        if (pipe->colision(&player_instance.sprite) || player_instance.sprite.getPosition().y < -70 || player_instance.sprite.getPosition().y > windowHeight) {
+        if (pipe->colision(&player_instance.sprite) ||
+            player_instance.sprite.getPosition().y < -70 ||
+            player_instance.sprite.getPosition().y > windowHeight) {
           speed = 0;
           gameOver = true;
         }
@@ -155,13 +155,14 @@ int main() {
       count += 10 * dt;
       if (count >= 10) {
         count = 0;
-        const int rounded_x = windowWidth/10;
-        const int rounded_y =  (windowHeight / 4. - 250 + rand() % 500)/10;
-        const int rounded_dist = (650 - 25 + rand() % 50)/10;
+        const int rounded_x = windowWidth / PIXEL_MULTIPLIER;
+        const int rounded_y =
+            (windowHeight / 4. - 250 + rand() % 500) / PIXEL_MULTIPLIER;
+        const int rounded_dist = (650 - 25 + rand() % 50) / PIXEL_MULTIPLIER;
 
-        pipes.push_back(
-            new Pipe(rounded_x*10, rounded_y*10,
-                     rounded_dist*10, pipeUpTexture, pipeDownTexture));
+        pipes.push_back(new Pipe(
+            rounded_x * PIXEL_MULTIPLIER, rounded_y * PIXEL_MULTIPLIER,
+            rounded_dist * PIXEL_MULTIPLIER, pipeUpTexture, pipeDownTexture));
       }
       if (pipes[0]->getX() <= -200) {
         delete pipes[0];
