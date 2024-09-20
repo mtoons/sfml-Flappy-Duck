@@ -142,7 +142,7 @@ int main() {
       speed += 0.5 * dt;
       for (Pipe *&pipe : pipes) {
         pipe->move(-speed * dt);
-        if (pipe->colision(&player_instance.sprite)) {
+        if (pipe->colision(&player_instance.sprite) || player_instance.sprite.getPosition().y < -70 || player_instance.sprite.getPosition().y > windowHeight) {
           speed = 0;
           gameOver = true;
         }
