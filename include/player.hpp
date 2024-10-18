@@ -1,13 +1,14 @@
 #pragma once
-#include <SFML/Graphics.hpp>
 #include <is_pixel.h>
 
-class Player {
-  public:
-  float x, y;
-  float velocity;
-  sf::Sprite sprite;
+#include <SFML/Graphics.hpp>
 
-  Player(sf::Sprite sprite);
-  void update();
+class Player {
+   public:
+    float x, y;
+    float velocity;
+    sf::Sprite sprite;
+
+    Player(sf::Sprite sprite);
+    void update();
 };
